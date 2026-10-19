@@ -247,6 +247,11 @@ const posts = allPosts.slice(0, 3);
             </time>
             <h3>{post.frontmatter.title}<span aria-hidden="true"> ↗</span></h3>
             <p>{post.frontmatter.description}</p>
+            {(post.frontmatter.tags?.length ?? 0) > 0 && (
+              <ul class="tag-list">
+                {post.frontmatter.tags?.map((tag) => <li>{tag}</li>)}
+              </ul>
+            )}
           </a>
         ))}
         {allPosts.length > posts.length && (
