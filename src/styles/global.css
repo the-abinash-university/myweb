@@ -425,6 +425,17 @@ main {
   transition: border-color 160ms ease, background 160ms ease;
 }
 
+.project-more-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--soft-green);
+}
+
+.project-more-card h3 {
+  margin-top: 16px;
+}
+
 .project-card:hover {
   border-color: var(--green);
   background: var(--card-hover);
@@ -819,6 +830,12 @@ main {
   padding: 28px 4px;
   border-bottom: 1px solid var(--line);
   transition: padding 160ms ease;
+}
+
+.publication-row {
+  grid-template-columns: minmax(0, 1fr) 24px;
+  min-height: 124px;
+  align-items: center;
 }
 
 .post-row:hover {

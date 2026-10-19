@@ -1,0 +1,45 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+
+interface PublicationFrontmatter {
+  title: string;
+  description: string;
+}
+
+const publications = Object.entries(
+  import.meta.glob<{ frontmatter: PublicationFrontmatter }>('./*.md', { eager: true }),
+)
+  .map(([path, publication]) => ({
+    ...publication,
+    url: path.replace('./', '/publications/').replace(/\.md$/, ''),
+  }))
+  .sort((a, b) => a.frontmatter.title.localeCompare(b.frontmatter.title));
+---
+
+<SiteLayout title="Publications" description="Publications and presentations by Abinash Chaudhary.">
+  <section class="page-intro">
+    <p class="eyebrow">PAPERS &amp; PRESENTATIONS</p>
+    <h1>Selected <span>publications.</span></h1>
+    <p class="page-lede">Research publications and presentations. Add a Markdown file to <code>src/pages/publications/</code> to include more.</p>
+  </section>
+
+  <section class="post-list" aria-label="Publications">
+    {publications.length > 0 ? publications.map((publication) => (
+      <a class="post-row publication-row" href={publication.url}>
+        <div class="post-details">
+          <h2>{publication.frontmatter.title}</h2>
+          <p>{publication.frontmatter.description}</p>
+        </div>
+        <span class="post-arrow" aria-hidden="true">↗</span>
+      </a>
+    )) : (
+      <div class="empty-card blog-empty">
+        <span class="empty-mark" aria-hidden="true">✳</span>
+        <div>
+          <h2>Publications are on their way.</h2>
+          <p>Add a Markdown file to this folder to publish it here.</p>
+        </div>
+      </div>
+    )}
+  </section>
+</SiteLayout>

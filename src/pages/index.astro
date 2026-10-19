@@ -18,15 +18,15 @@ interface TutorialFrontmatter {
   tags?: string[];
 }
 
-const tutorials = Object.entries(
+const allTutorials = Object.entries(
   import.meta.glob<{ frontmatter: TutorialFrontmatter }>('./tutorials/*.md', { eager: true }),
 )
   .map(([path, tutorial]) => ({
     ...tutorial,
     href: path.replace('./tutorials/', '/tutorials/').replace(/\.md$/, ''),
   }))
-  .sort((a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf())
-  .slice(0, 3);
+  .sort((a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf());
+const tutorials = allTutorials.slice(0, 3);
 
 interface ProjectFrontmatter {
   title: string;
@@ -34,14 +34,46 @@ interface ProjectFrontmatter {
   tags?: string[];
 }
 
-const projects = Object.entries(
+const allProjects = Object.entries(
   import.meta.glob<{ frontmatter: ProjectFrontmatter }>('./side-projects/*.md', { eager: true }),
 )
   .map(([path, project]) => ({
     ...project,
     href: path.replace('./side-projects/', '/side-projects/').replace(/\.md$/, ''),
+  }));
+const projects = allProjects.slice(0, 3);
+
+interface PublicationFrontmatter {
+  title: string;
+  description: string;
+}
+
+const allPublications = Object.entries(
+  import.meta.glob<{ frontmatter: PublicationFrontmatter }>('./publications/*.md', { eager: true }),
+)
+  .map(([path, publication]) => ({
+    ...publication,
+    href: path.replace('./publications/', '/publications/').replace(/\.md$/, ''),
   }))
-  .slice(0, 3);
+  .sort((a, b) => a.frontmatter.title.localeCompare(b.frontmatter.title));
+const publications = allPublications.slice(0, 3);
+
+interface PostFrontmatter {
+  title: string;
+  pubDate: string | Date;
+  description: string;
+  tags?: string[];
+}
+
+const allPosts = Object.entries(
+  import.meta.glob<{ frontmatter: PostFrontmatter }>('./posts/*.md', { eager: true }),
+)
+  .map(([path, post]) => ({
+    ...post,
+    href: path.replace('./posts/', '/posts/').replace(/\.md$/, ''),
+  }))
+  .sort((a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf());
+const posts = allPosts.slice(0, 3);
 ---
 
 <SiteLayout title={site.title} description={site.description}>
@@ -98,6 +130,13 @@ const projects = Object.entries(
             </ul>
           </a>
         ))}
+        {allProjects.length > projects.length && (
+          <a class="project-card project-more-card" href="/side-projects/">
+            <span class="project-number">MORE ↗</span>
+            <h3>More side projects</h3>
+            <p>Explore all side projects.</p>
+          </a>
+        )}
       </div>
     ) : (
       <div class="empty-card">
@@ -105,6 +144,44 @@ const projects = Object.entries(
         <div>
           <h3>Projects will take shape here.</h3>
           <p>Side projects and engineering notes will find a home here.</p>
+        </div>
+      </div>
+    )}
+  </section>
+
+  <section class="content-section" id="publications">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">PAPERS &amp; PRESENTATIONS</p>
+        <h2>Publications</h2>
+      </div>
+      <a class="section-index section-action" href="/publications/">ALL PUBLICATIONS ↗</a>
+    </div>
+    {publications.length > 0 ? (
+      <>
+        <div class="project-grid">
+          {publications.map((publication, index) => (
+            <a class="project-card" href={publication.href}>
+              <span class="project-number">0{index + 1}</span>
+              <h3>{publication.frontmatter.title}<span aria-hidden="true"> ↗</span></h3>
+              <p>{publication.frontmatter.description}</p>
+            </a>
+          ))}
+          {allPublications.length > publications.length && (
+            <a class="project-card project-more-card" href="/publications/">
+              <span class="project-number">MORE ↗</span>
+              <h3>More publications</h3>
+              <p>Browse all publications and presentations.</p>
+            </a>
+          )}
+        </div>
+        </>
+    ) : (
+      <div class="empty-card">
+        <span class="empty-mark" aria-hidden="true">✳</span>
+        <div>
+          <h3>Publications are on their way.</h3>
+          <p>Research and conference presentations will appear here.</p>
         </div>
       </div>
     )}
@@ -134,6 +211,13 @@ const projects = Object.entries(
             )}
           </a>
         ))}
+        {allTutorials.length > tutorials.length && (
+          <a class="project-card project-more-card" href="/tutorials/">
+            <span class="project-number">MORE ↗</span>
+            <h3>More tutorials</h3>
+            <p>Browse all tutorials and learning notes.</p>
+          </a>
+        )}
       </div>
     ) : (
       <div class="empty-card">
@@ -146,12 +230,41 @@ const projects = Object.entries(
     )}
   </section>
 
-  <section class="writing-callout">
-    <div>
-      <p class="eyebrow">THOUGHTS, NOTES & OCCASIONAL RABBIT HOLES</p>
-      <h2>Words in progress.</h2>
-      <p>Ideas are better when they're shared. Find my latest notes and longer reads on the writing page.</p>
+  <section class="content-section" id="writing">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">THOUGHTS, NOTES &amp; OCCASIONAL RABBIT HOLES</p>
+        <h2>Writing</h2>
+      </div>
+      <a class="section-index section-action" href="/blog/">ALL WRITING ↗</a>
     </div>
-    <a class="round-link" href="/blog/" aria-label="Visit the writing page">↗</a>
+    {posts.length > 0 ? (
+      <div class="project-grid">
+        {posts.map((post, index) => (
+          <a class="project-card" href={post.href}>
+            <time class="project-number" datetime={new Date(post.frontmatter.pubDate).toISOString()}>
+              {new Date(post.frontmatter.pubDate).toLocaleDateString('en', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' })}
+            </time>
+            <h3>{post.frontmatter.title}<span aria-hidden="true"> ↗</span></h3>
+            <p>{post.frontmatter.description}</p>
+          </a>
+        ))}
+        {allPosts.length > posts.length && (
+          <a class="project-card project-more-card" href="/blog/">
+            <span class="project-number">MORE ↗</span>
+            <h3>More writing</h3>
+            <p>Read all notes and articles.</p>
+          </a>
+        )}
+      </div>
+    ) : (
+      <div class="empty-card">
+        <span class="empty-mark" aria-hidden="true">✳</span>
+        <div>
+          <h3>Words in progress.</h3>
+          <p>New writing will appear here.</p>
+        </div>
+      </div>
+    )}
   </section>
 </SiteLayout>

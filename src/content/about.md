@@ -1,5 +1,6 @@
 # Publications
-- Who should pay
+
+[View all publications](/publications/)
 
 ## Highlights
 - 7+ years of experience.
