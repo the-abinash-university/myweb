@@ -1,3 +1,6 @@
+# Publications
+- Who should pay
+
 ## Highlights
 - 7+ years of experience.
 - Licensed Professional Engineer (PE) in Illinois.
