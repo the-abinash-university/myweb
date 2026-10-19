@@ -554,8 +554,9 @@ main {
 .cv-buttons {
   display: flex;
   flex-shrink: 0;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 20px;
+  gap: 12px;
 }
 
 .cv-print-button {
@@ -854,15 +855,14 @@ main {
 }
 
 .about-copy {
-  display: grid;
-  grid-template-columns: minmax(180px, 0.8fr) 2fr;
-  align-items: center;
-  gap: 48px;
+  display: flex;
+  justify-content: center;
   padding: 56px 0 66px;
   border-bottom: 1px solid var(--line);
 }
 
 .about-photo {
+  width: min(100%, 280px);
   margin: 0;
 }
 
@@ -903,17 +903,15 @@ main {
   line-height: 1;
 }
 
-.about-body h2 {
-  margin-top: 0;
+.about-prose {
+  padding-top: 34px;
 }
 
-.about-body p {
-  max-width: 540px;
-  color: var(--muted);
-  line-height: 1.85;
+.about-links {
+  padding-top: 10px;
 }
 
-.about-body a {
+.about-links a {
   color: var(--green);
   text-decoration: underline;
   text-underline-offset: 3px;
@@ -1062,12 +1060,6 @@ main {
     grid-row: 1 / span 2;
   }
 
-  .about-copy {
-    grid-template-columns: 1fr;
-    gap: 24px;
-    padding: 42px 0;
-  }
-
   .about-photo {
     width: min(100%, 230px);
   }
@@ -1154,55 +1146,73 @@ main {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
   }
+}
 
-  @media print {
-    @page {
-      size: A4;
-      margin: 14mm;
-    }
+@media print {
+  @page {
+    size: A4;
+    margin: 14mm;
+  }
 
-    body,
-    :root {
-      background: white !important;
-      color: #332b21 !important;
-      print-color-adjust: exact;
-      -webkit-print-color-adjust: exact;
-    }
+  body,
+  :root {
+    background: white !important;
+    color: #332b21 !important;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
 
-    .site-header,
-    .site-footer,
-    .cv-page-intro,
-    .cv-actions {
-      display: none !important;
-    }
+  .site-header,
+  .site-footer,
+  .cv-page-intro,
+  .cv-actions {
+    display: none !important;
+  }
 
-    .site-shell {
-      width: 100%;
-      max-width: none;
-    }
+  .site-shell {
+    width: 100%;
+    max-width: none;
+  }
 
-    main {
-      min-height: 0;
-    }
+  main {
+    min-height: 0;
+  }
 
-    .cv-preview-section {
-      padding: 0;
-    }
+  .cv-preview-section {
+    position: relative;
+    padding: 0;
+  }
 
-    .cv-sheet {
-      max-width: none;
-      padding: 0;
-      border: 0;
-      background: white;
-      box-shadow: none;
-    }
+  .cv-preview-section::after {
+    position: fixed;
+    z-index: 10;
+    top: 48%;
+    left: 0;
+    width: 100%;
+    color: #8c8375;
+    content: "abinashchaudhary.com · abinashchaudhary.com · abinashchaudhary.com";
+    font-family: var(--mono);
+    font-size: 20pt;
+    letter-spacing: 0.12em;
+    opacity: 0.14;
+    pointer-events: none;
+    text-align: center;
+    transform: rotate(-30deg);
+  }
 
-    .cv-prose > h1,
-    .cv-prose > h2,
-    .cv-prose > h3,
-    .cv-prose > p,
-    .cv-prose > ul {
-      break-inside: avoid;
-    }
+  .cv-sheet {
+    max-width: none;
+    padding: 0;
+    border: 0;
+    background: white;
+    box-shadow: none;
+  }
+
+  .cv-prose > h1,
+  .cv-prose > h2,
+  .cv-prose > h3,
+  .cv-prose > p,
+  .cv-prose > ul {
+    break-inside: avoid;
   }
 }

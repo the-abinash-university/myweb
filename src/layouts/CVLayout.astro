@@ -13,7 +13,11 @@ title: ${JSON.stringify(frontmatter.title)}
 description: ${JSON.stringify(frontmatter.description)}
 ---
 
-${rawContent()}`;
+${rawContent()}
+
+---
+
+${Array.from({ length: 5 }, () => 'from abinashchaudhary.com').join('\n\n')}`;
 const markdownUrl = `data:text/markdown;charset=utf-8,${encodeURIComponent(markdown)}`;
 ---
 
@@ -21,12 +25,14 @@ const markdownUrl = `data:text/markdown;charset=utf-8,${encodeURIComponent(markd
   <section class="page-intro cv-page-intro">
     <p class="eyebrow">CURRICULUM VITAE</p>
     <h1>CV <span>&amp; experience.</span></h1>
-    <p class="page-lede">This CV is written in Markdown. Edit <code>src/pages/cv.md</code>, then use Print / Save as PDF to export the updated version.</p>
   </section>
 
   <section class="cv-actions" aria-label="CV actions">
     <p class="cv-wit">High-voltage subject matter. Low-voltage effort: grab the Markdown or print a PDF.</p>
     <div class="cv-buttons">
+      <a class="button button-outline" href="/about/#highlights">
+        View highlights <span aria-hidden="true">↗</span>
+      </a>
       <a class="button button-primary" href={markdownUrl} download="Abinash-Chaudhary-CV.md">
         Download Markdown <span aria-hidden="true">↓</span>
       </a>
@@ -39,7 +45,7 @@ const markdownUrl = `data:text/markdown;charset=utf-8,${encodeURIComponent(markd
   <section class="cv-preview-section" aria-label="CV preview">
     <article class="cv-sheet cv-prose">
       <slot />
-      <p class="cv-sheet-note">SAMPLE TEMPLATE · Replace bracketed fields and verify all details before sharing.</p>
+      <p class="cv-sheet-note">ABINASH CHAUDHARY · HOMEPAGE: abinashchaudhary.com · <a href="/about/">HIGHLIGHTS</a></p>
     </article>
   </section>
 

@@ -3,7 +3,7 @@ import { site } from '../data/site';
 ---
 <footer class="site-footer">
   <span>&copy; {new Date().getFullYear()} {site.name}</span>
-  <span class="footer-credit">Made with care, and <a href="https://astro.build/">Astro</a>.</span>
+  <span class="footer-credit">Made with <a href="https://astro.build/">Astro</a>.</span>
   {(site.email || site.socialLinks.length > 0) && (
     <nav class="footer-links" aria-label="Contact and social links">
       {site.email && <a href={`mailto:${site.email}`}>Email</a>}

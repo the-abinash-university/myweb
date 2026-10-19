@@ -14,7 +14,8 @@ Build the static site with `npm run build`; preview the build locally with `npm 
 ## Personalize the site
 
 - Edit `src/data/site.ts` to update your name, introduction, email, résumé path, and social profile URLs.
-- Edit the CV directly in `src/pages/cv.md`. The `/cv/` page renders that Markdown, offers the Markdown source for download, and has a Print / Save as PDF button for exporting the current version.
+- Edit the CV directly in `src/pages/cv.md`. The `/cv/` page renders that Markdown, offers the Markdown source for download, and has a Print / Save as PDF button. PDF printouts carry a repeated `abinashchaudhary.com` watermark.
+- Edit the About page experience, leadership, business development, and tools content in `src/content/about.md`. The About page renders this Markdown directly.
 - Add your photo to `src/assets/profile/` to replace the About page placeholder automatically. Supported formats are AVIF, GIF, JPEG, PNG, SVG, and WebP. When there are multiple images, a non-placeholder filename is chosen alphabetically; keep just one personal photo in that folder for a predictable result. Leave `profile-placeholder.svg` in place as the fallback.
 - To replace the mountain-and-sea hero art with a photo, add one AVIF, GIF, JPEG, PNG, SVG, or WebP image to `src/assets/hero/`. The site will use it automatically, with a subtle rustic finish; remove it to restore the built-in illustration. If there are several images, the alphabetically first filename is used.
 - Add Markdown posts under `src/pages/posts/`. Each post becomes a page and is automatically listed on `/blog/`.

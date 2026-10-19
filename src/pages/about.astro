@@ -1,9 +1,11 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
 import { site } from '../data/site';
+import { Content } from '../content/about.md';
 
 const linkedin = site.socialLinks.find(({ label }) => label === 'LinkedIn');
 const github = site.socialLinks.find(({ label }) => label === 'GitHub');
+const substack = site.socialLinks.find(({ label }) => label === 'Substack');
 const profileImages = Object.entries(
   import.meta.glob<string>('../assets/profile/*.{avif,gif,jpg,jpeg,png,svg,webp}', {
     eager: true,
@@ -30,11 +32,10 @@ const [profileImagePath, profileImageUrl] = profileImage;
 const isPhotoPlaceholder = profileImagePath.endsWith('/profile-placeholder.svg');
 ---
 
-<SiteLayout title="About" description={`A little about ${site.name}, Power Systems Engineer.`}>
+<SiteLayout title="About" description={`Highlights, leadership, engineering tools, and experience from ${site.name}, Power Systems Engineer.`}>
   <section class="page-intro">
-    <p class="eyebrow">A LITTLE CONTEXT</p>
+    <p class="eyebrow">HIGHLIGHTS</p>
     <h1>About <span>me.</span></h1>
-    <p class="page-lede">A power systems engineer sharing projects, professional interests, and notes along the way.</p>
   </section>
 
   <section class="about-copy">
@@ -51,11 +52,14 @@ const isPhotoPlaceholder = profileImagePath.endsWith('/profile-placeholder.svg')
           : 'Abinash Chaudhary · Power Systems Engineer'}
       </figcaption>
     </figure>
-    <div class="about-body">
-      <h2>I'm Abinash Chaudhary.</h2>
-      <p>I'm a Power Systems Engineer. This site is a home for my professional profile, engineering side projects, and writing.</p>
-      <p>Explore my <a href="/side-projects/">side projects</a> and <a href="/tutorials/">tutorials</a>, browse the <a href="/blog/">writing</a>, or connect with me{linkedin && <> on <a href={linkedin.href}>LinkedIn</a></>}{linkedin && github && ' and'}{github && <> on <a href={github.href}>GitHub</a></>}.</p>
-    </div>
+  </section>
+
+  <article id="highlights" class="prose about-prose">
+    <Content />
+  </article>
+
+  <section class="about-links" aria-label="Connect and explore">
+    <p>Explore my <a href="/side-projects/">side projects</a>, <a href="/tutorials/">tutorials</a>, and <a href="/blog/">writing</a>, or connect with me{linkedin && <> on <a href={linkedin.href}>LinkedIn</a></>}{linkedin && github && ' and'}{github && <> on <a href={github.href}>GitHub</a></>}{substack && <> or <a href={substack.href}>Substack</a></>}.</p>
   </section>
 
   <section class="resume-panel">
