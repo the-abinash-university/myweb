@@ -1,0 +1,55 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+
+interface TutorialFrontmatter {
+  title: string;
+  pubDate: string | Date;
+  description: string;
+  tags?: string[];
+}
+
+const tutorials = Object.entries(
+  import.meta.glob<{ frontmatter: TutorialFrontmatter }>('./*.md', { eager: true }),
+)
+  .map(([path, tutorial]) => ({
+    ...tutorial,
+    url: path.replace('./', '/tutorials/').replace(/\.md$/, ''),
+  }))
+  .sort((a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf());
+---
+
+<SiteLayout title="Tutorials" description="Power systems engineering tutorials and learning notes by Abinash Chaudhary.">
+  <section class="page-intro">
+    <p class="eyebrow">LEARN BY WORKING THROUGH EXAMPLES</p>
+    <h1>Power systems <span>tutorials.</span></h1>
+    <p class="page-lede">Step-by-step learning notes and illustrative examples. Add Markdown files to <code>src/pages/tutorials/</code> to publish more.</p>
+  </section>
+
+  <section class="post-list" aria-label="Tutorials">
+    {tutorials.length > 0 ? tutorials.map((tutorial) => (
+      <a class="post-row" href={tutorial.url}>
+        <time datetime={new Date(tutorial.frontmatter.pubDate).toISOString()}>
+          {new Date(tutorial.frontmatter.pubDate).toLocaleDateString('en', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' })}
+        </time>
+        <div class="post-details">
+          <h2>{tutorial.frontmatter.title}</h2>
+          <p>{tutorial.frontmatter.description}</p>
+          {tutorial.frontmatter.tags?.length > 0 && (
+            <ul class="tag-list">
+              {tutorial.frontmatter.tags.map((tag) => <li>{tag}</li>)}
+            </ul>
+          )}
+        </div>
+        <span class="post-arrow" aria-hidden="true">↗</span>
+      </a>
+    )) : (
+      <div class="empty-card blog-empty">
+        <span class="empty-mark" aria-hidden="true">✳</span>
+        <div>
+          <h2>The first tutorial is on its way.</h2>
+          <p>Add a Markdown file to this folder to publish it here.</p>
+        </div>
+      </div>
+    )}
+  </section>
+</SiteLayout>

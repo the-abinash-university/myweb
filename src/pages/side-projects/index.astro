@@ -1,0 +1,40 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+
+interface ProjectFrontmatter {
+  title: string;
+  description: string;
+  tags?: string[];
+}
+
+const projects = Object.entries(
+  import.meta.glob<{ frontmatter: ProjectFrontmatter }>('./*.md', { eager: true }),
+)
+  .map(([path, project]) => ({
+    ...project,
+    href: path.replace('./', '/side-projects/').replace(/\.md$/, ''),
+  }));
+---
+
+<SiteLayout title="Side projects" description="Engineering concepts and independent experiments by Abinash Chaudhary.">
+  <section class="page-intro">
+    <p class="eyebrow">ENGINEERING IDEAS &amp; EXPERIMENTS</p>
+    <h1>Side <span>projects.</span></h1>
+    <p class="page-lede">Small studies and concepts exploring power systems engineering. These starter examples are illustrative, not claims of completed work.</p>
+  </section>
+
+  <section class="content-section project-index">
+    <div class="project-grid">
+      {projects.map((project, index) => (
+        <a class="project-card" href={project.href}>
+          <span class="project-number">0{index + 1}</span>
+          <h3>{project.frontmatter.title}<span aria-hidden="true"> ↗</span></h3>
+          <p>{project.frontmatter.description}</p>
+          <ul class="tag-list">
+            {project.frontmatter.tags?.map((tag) => <li>{tag}</li>)}
+          </ul>
+        </a>
+      ))}
+    </div>
+  </section>
+</SiteLayout>

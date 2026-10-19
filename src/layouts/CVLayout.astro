@@ -1,0 +1,49 @@
+---
+import type { MarkdownLayoutProps } from 'astro';
+import SiteLayout from './SiteLayout.astro';
+
+type Props = MarkdownLayoutProps<{
+  title: string;
+  description: string;
+}>;
+
+const { frontmatter, rawContent } = Astro.props;
+const markdown = `---
+title: ${JSON.stringify(frontmatter.title)}
+description: ${JSON.stringify(frontmatter.description)}
+---
+
+${rawContent()}`;
+const markdownUrl = `data:text/markdown;charset=utf-8,${encodeURIComponent(markdown)}`;
+---
+
+<SiteLayout title={frontmatter.title} description={frontmatter.description}>
+  <section class="page-intro cv-page-intro">
+    <p class="eyebrow">CURRICULUM VITAE</p>
+    <h1>CV <span>&amp; experience.</span></h1>
+    <p class="page-lede">This CV is written in Markdown. Edit <code>src/pages/cv.md</code>, then use Print / Save as PDF to export the updated version.</p>
+  </section>
+
+  <section class="cv-actions" aria-label="CV actions">
+    <p class="cv-wit">High-voltage subject matter. Low-voltage effort: grab the Markdown or print a PDF.</p>
+    <div class="cv-buttons">
+      <a class="button button-primary" href={markdownUrl} download="Abinash-Chaudhary-CV.md">
+        Download Markdown <span aria-hidden="true">↓</span>
+      </a>
+      <button class="button button-outline cv-print-button" type="button">
+        Print / Save as PDF <span aria-hidden="true">↗</span>
+      </button>
+    </div>
+  </section>
+
+  <section class="cv-preview-section" aria-label="CV preview">
+    <article class="cv-sheet cv-prose">
+      <slot />
+      <p class="cv-sheet-note">SAMPLE TEMPLATE · Replace bracketed fields and verify all details before sharing.</p>
+    </article>
+  </section>
+
+  <script>
+    import '../scripts/cv-print.js';
+  </script>
+</SiteLayout>

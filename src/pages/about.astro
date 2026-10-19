@@ -1,25 +1,69 @@
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-    <body>
-        <h1>My Astro Site</h1>
-        <a href="/">Home</a> <br>
-        <a href="/about/">About</a> <br>
-        <a href="/blog/">Blog</a>
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import { site } from '../data/site';
 
-        <h1>About Me</h1>
-        <h2>... and my new Astro site!</h2>
-        <h1>About Me</h1>
-        <h2>... and my new Astro site!</h2>
+const linkedin = site.socialLinks.find(({ label }) => label === 'LinkedIn');
+const github = site.socialLinks.find(({ label }) => label === 'GitHub');
+const profileImages = Object.entries(
+  import.meta.glob<string>('../assets/profile/*.{avif,gif,jpg,jpeg,png,svg,webp}', {
+    eager: true,
+    query: '?url',
+    import: 'default',
+  }),
+).sort(([firstPath], [secondPath]) => {
+  const firstIsPlaceholder = firstPath.endsWith('/profile-placeholder.svg');
+  const secondIsPlaceholder = secondPath.endsWith('/profile-placeholder.svg');
 
-        <p>I am working through Astro's introductory tutorial. This is the second page on my website, and it's the first one I built myself!</p>
+  if (firstIsPlaceholder !== secondIsPlaceholder) {
+    return firstIsPlaceholder ? 1 : -1;
+  }
 
-        <p>This site will update as I complete more of the tutorial, so keep checking back and see how my journey is going!</p>
-    </body>
-</html>
+  return firstPath.localeCompare(secondPath);
+});
+const profileImage = profileImages[0];
+
+if (!profileImage) {
+  throw new Error('Add a profile image or profile-placeholder.svg to src/assets/profile/.');
+}
+
+const [profileImagePath, profileImageUrl] = profileImage;
+const isPhotoPlaceholder = profileImagePath.endsWith('/profile-placeholder.svg');
+---
+
+<SiteLayout title="About" description={`A little about ${site.name}, Power Systems Engineer.`}>
+  <section class="page-intro">
+    <p class="eyebrow">A LITTLE CONTEXT</p>
+    <h1>About <span>me.</span></h1>
+    <p class="page-lede">A power systems engineer sharing projects, professional interests, and notes along the way.</p>
+  </section>
+
+  <section class="about-copy">
+    <figure class="about-photo">
+      <img
+        src={profileImageUrl}
+        alt={isPhotoPlaceholder ? 'Illustrated placeholder for Abinash Chaudhary’s profile photo' : 'Portrait of Abinash Chaudhary'}
+        width="480"
+        height="600"
+      />
+      <figcaption>
+        {isPhotoPlaceholder
+          ? <>Photo placeholder · add an image to <code>src/assets/profile/</code></>
+          : 'Abinash Chaudhary · Power Systems Engineer'}
+      </figcaption>
+    </figure>
+    <div class="about-body">
+      <h2>I'm Abinash Chaudhary.</h2>
+      <p>I'm a Power Systems Engineer. This site is a home for my professional profile, engineering side projects, and writing.</p>
+      <p>Explore my <a href="/side-projects/">side projects</a> and <a href="/tutorials/">tutorials</a>, browse the <a href="/blog/">writing</a>, or connect with me{linkedin && <> on <a href={linkedin.href}>LinkedIn</a></>}{linkedin && github && ' and'}{github && <> on <a href={github.href}>GitHub</a></>}.</p>
+    </div>
+  </section>
+
+  <section class="resume-panel">
+    <div>
+      <p class="eyebrow">THE SHORT VERSION</p>
+      <h2>Curriculum vitae</h2>
+      <p>View or download my sample power systems engineering CV. The sample clearly marks details that need replacing with verified experience.</p>
+    </div>
+    <a class="button button-outline" href="/cv/">View CV <span aria-hidden="true">↗</span></a>
+  </section>
+</SiteLayout>

@@ -1,0 +1,55 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+
+interface PostFrontmatter {
+  title: string;
+  pubDate: string | Date;
+  description: string;
+  tags?: string[];
+}
+
+const posts = Object.entries(
+  import.meta.glob<{ frontmatter: PostFrontmatter }>('./posts/*.md', { eager: true }),
+)
+  .map(([path, post]) => ({
+    ...post,
+    url: path.replace('./posts/', '/posts/').replace(/\.md$/, ''),
+  }))
+  .sort((a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf());
+---
+
+<SiteLayout title="Writing" description="Notes, ideas, and longer reads.">
+  <section class="page-intro">
+    <p class="eyebrow">THOUGHTS & NOTES</p>
+    <h1>Writing <span>things down.</span></h1>
+    <p class="page-lede">A collection of notes, discoveries, and ideas worth sharing.</p>
+  </section>
+
+  <section class="post-list" aria-label="Blog posts">
+    {posts.length > 0 ? posts.map((post) => (
+      <a class="post-row" href={post.url}>
+        <time datetime={new Date(post.frontmatter.pubDate).toISOString()}>
+          {new Date(post.frontmatter.pubDate).toLocaleDateString('en', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' })}
+        </time>
+        <div class="post-details">
+          <h2>{post.frontmatter.title}</h2>
+          <p>{post.frontmatter.description}</p>
+          {(post.frontmatter.tags?.length ?? 0) > 0 && (
+            <ul class="tag-list">
+              {(post.frontmatter.tags ?? []).map((tag: string) => <li>{tag}</li>)}
+            </ul>
+          )}
+        </div>
+        <span class="post-arrow" aria-hidden="true">↗</span>
+      </a>
+    )) : (
+      <div class="empty-card blog-empty">
+        <span class="empty-mark" aria-hidden="true">✳</span>
+        <div>
+          <h2>The first note is still in the notebook.</h2>
+          <p>New writing will show up here. Check back soon.</p>
+        </div>
+      </div>
+    )}
+  </section>
+</SiteLayout>

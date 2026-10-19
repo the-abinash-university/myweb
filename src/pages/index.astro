@@ -1,16 +1,155 @@
 ---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import { site } from '../data/site';
+
+const heroImages = Object.entries(
+  import.meta.glob<string>('../assets/hero/*.{avif,gif,jpg,jpeg,png,svg,webp}', {
+    eager: true,
+    query: '?url',
+    import: 'default',
+  }),
+).sort(([firstPath], [secondPath]) => firstPath.localeCompare(secondPath));
+const heroImage = heroImages[0]?.[1];
+
+interface TutorialFrontmatter {
+  title: string;
+  pubDate: string | Date;
+  description: string;
+  tags?: string[];
+}
+
+const tutorials = Object.entries(
+  import.meta.glob<{ frontmatter: TutorialFrontmatter }>('./tutorials/*.md', { eager: true }),
+)
+  .map(([path, tutorial]) => ({
+    ...tutorial,
+    href: path.replace('./tutorials/', '/tutorials/').replace(/\.md$/, ''),
+  }))
+  .sort((a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf())
+  .slice(0, 3);
+
+interface ProjectFrontmatter {
+  title: string;
+  description: string;
+  tags?: string[];
+}
+
+const projects = Object.entries(
+  import.meta.glob<{ frontmatter: ProjectFrontmatter }>('./side-projects/*.md', { eager: true }),
+)
+  .map(([path, project]) => ({
+    ...project,
+    href: path.replace('./side-projects/', '/side-projects/').replace(/\.md$/, ''),
+  }));
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>My Astro Site, What the heck!</h1>
-	</body>
-</html>
+<SiteLayout title={site.title} description={site.description}>
+  <section class="hero">
+    <p class="eyebrow"><span class="status-dot"></span> MY LITTLE INTERNET SPACE</p>
+    <h1>Modelling, <span>Studies</span> &amp; Thoughts.</h1>
+    <p class="hero-copy">{site.introduction}</p>
+    <div class="hero-actions">
+      <a class="button button-primary" href="#projects">Explore my work <span aria-hidden="true">↓</span></a>
+      <a class="text-link" href="/blog/">Read my writing <span aria-hidden="true">↗</span></a>
+    </div>
+    <nav class="hero-socials" aria-label="Social profiles">
+      {site.socialLinks.map(({ label, href }) => (
+        <a href={href} target="_blank" rel="noopener noreferrer">{label}<span aria-hidden="true"> ↗</span></a>
+      ))}
+    </nav>
+    <div class="hero-stamp" aria-hidden="true">
+      {heroImage ? (
+        <img src={heroImage} alt="" width="480" height="600" />
+      ) : (
+        <svg viewBox="0 0 120 120" fill="none">
+          <circle cx="83" cy="37" r="12" fill="var(--status)" stroke="none" />
+          <path d="M14 78 43 43l15 18 11-13 37 30v8H14v-8Z" fill="var(--soft-green)" />
+          <path d="m14 78 29-35 15 18m0 0 11-13 37 30" />
+          <path d="m34 54 9-11 8 10-7-2-4 6m20 2 8-9 8 8-7-2-4 5" />
+          <path d="M13 81c11-3 20 3 31 0s20-3 31 0 20 3 32 0" />
+          <path d="M16 91c9-3 17 3 26 0s17-3 26 0 17 3 26 0 12-2 18 0" />
+          <path d="M27 101c8-2 14 2 22 0s14-2 22 0 14 2 22 0" />
+          <path d="M14 109h92" />
+          <path d="M25 34c4-4 8-4 12 0m9-9c3-3 6-3 9 0" />
+        </svg>
+      )}
+    </div>
+  </section>
+
+  <section class="content-section" id="projects">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">FUN &amp; ENGINEERING</p>
+        <h2>Side projects</h2>
+      </div>
+      <a class="section-index section-action" href="/side-projects/">ALL PROJECTS ↗</a>
+    </div>
+    {projects.length > 0 ? (
+      <div class="project-grid">
+        {projects.map((project, index) => (
+          <a class="project-card" href={project.href}>
+            <span class="project-number">0{index + 1}</span>
+            <h3>{project.frontmatter.title}<span aria-hidden="true"> ↗</span></h3>
+            <p>{project.frontmatter.description}</p>
+            <ul class="tag-list">
+              {project.frontmatter.tags?.map((tag) => <li>{tag}</li>)}
+            </ul>
+          </a>
+        ))}
+      </div>
+    ) : (
+      <div class="empty-card">
+        <span class="empty-mark" aria-hidden="true">✳</span>
+        <div>
+          <h3>Projects will take shape here.</h3>
+          <p>Side projects and engineering notes will find a home here.</p>
+        </div>
+      </div>
+    )}
+  </section>
+
+  <section class="content-section" id="tutorials">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">LEARN BY WORKING THROUGH EXAMPLES</p>
+        <h2>Tutorials</h2>
+      </div>
+      <a class="section-index section-action" href="/tutorials/">ALL TUTORIALS ↗</a>
+    </div>
+    {tutorials.length > 0 ? (
+      <div class="project-grid">
+        {tutorials.map((tutorial, index) => (
+          <a class="project-card" href={tutorial.href}>
+            <time class="project-number" datetime={new Date(tutorial.frontmatter.pubDate).toISOString()}>
+              {new Date(tutorial.frontmatter.pubDate).toLocaleDateString('en', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' })}
+            </time>
+            <h3>{tutorial.frontmatter.title}<span aria-hidden="true"> ↗</span></h3>
+            <p>{tutorial.frontmatter.description}</p>
+            {tutorial.frontmatter.tags?.length > 0 && (
+              <ul class="tag-list">
+                {tutorial.frontmatter.tags.map((tag) => <li>{tag}</li>)}
+              </ul>
+            )}
+          </a>
+        ))}
+      </div>
+    ) : (
+      <div class="empty-card">
+        <span class="empty-mark" aria-hidden="true">✳</span>
+        <div>
+          <h3>Tutorials are on their way.</h3>
+          <p>Add Markdown tutorials to share practical notes and examples.</p>
+        </div>
+      </div>
+    )}
+  </section>
+
+  <section class="writing-callout">
+    <div>
+      <p class="eyebrow">THOUGHTS, NOTES & OCCASIONAL RABBIT HOLES</p>
+      <h2>Words in progress.</h2>
+      <p>Ideas are better when they're shared. Find my latest notes and longer reads on the writing page.</p>
+    </div>
+    <a class="round-link" href="/blog/" aria-label="Visit the writing page">↗</a>
+  </section>
+</SiteLayout>
