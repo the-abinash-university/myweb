@@ -125,9 +125,9 @@ const projects = Object.entries(
             </time>
             <h3>{tutorial.frontmatter.title}<span aria-hidden="true"> ↗</span></h3>
             <p>{tutorial.frontmatter.description}</p>
-            {tutorial.frontmatter.tags?.length > 0 && (
+            {(tutorial.frontmatter.tags?.length ?? 0) > 0 && (
               <ul class="tag-list">
-                {tutorial.frontmatter.tags.map((tag) => <li>{tag}</li>)}
+                {tutorial.frontmatter.tags?.map((tag) => <li>{tag}</li>)}
               </ul>
             )}
           </a>
