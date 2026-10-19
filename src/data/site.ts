@@ -2,7 +2,7 @@ export const site = {
   name: 'Abinash Chaudhary',
   title: 'Power Systems Engineer',
   description: 'The portfolio, side projects, and writing of Abinash Chaudhary, Power Systems Engineer.',
-  introduction: 'I am a Power System Engineer. I am passionate about electrical grid and its electro-magnetic phenomena. This is where I share my work and thougts on topics that interests me.',
+  introduction: 'I am a Power System Engineer. I am passionate about electrical grid and its electro-magnetic phenomena. My work includes Power Systems Modelling, EMT Studies, Protection and Control, GMDs, Optimization, Short and Long Term Planning studies.',
   email: '',
   socialLinks: [
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/abinash-chaudhary/' },
