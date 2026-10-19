@@ -1,5 +1,4 @@
 ## Highlights
-
 - 7+ years of experience.
 - Licensed Professional Engineer (PE) in Illinois.
 - Skilled in PSCAD, PSS®E, Aspen OneLiner, PowerGEM TARA, CYME, Synergi, Milsoft WindMil, SKM, EasyPower, ETAP, and PSS®CAPE.
