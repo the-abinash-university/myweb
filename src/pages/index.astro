@@ -40,7 +40,8 @@ const projects = Object.entries(
   .map(([path, project]) => ({
     ...project,
     href: path.replace('./side-projects/', '/side-projects/').replace(/\.md$/, ''),
-  }));
+  }))
+  .slice(0, 3);
 ---
 
 <SiteLayout title={site.title} description={site.description}>

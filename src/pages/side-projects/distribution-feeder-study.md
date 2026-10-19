@@ -11,6 +11,8 @@ tags: [distribution, load flow, study concept]
 
 How do demand growth and distributed generation affect voltage and equipment loading along a representative radial feeder?
 
+
+
 ## A possible approach
 
 Build a clearly documented sample feeder model, state all assumed line, transformer, and load data, then compare a base case with a small set of changed operating conditions. Record the assumptions beside each result so another engineer can reproduce the exercise.

@@ -726,6 +726,17 @@ main {
   line-height: 1.85;
 }
 
+.prose img,
+.cv-prose img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  margin: 24px auto;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+
 .prose h2,
 .prose h3 {
   margin: 34px 0 10px;
