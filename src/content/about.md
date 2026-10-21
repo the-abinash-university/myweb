@@ -32,11 +32,11 @@ Developed a tool to read AMI data and compare it with the CYME model. When data 
 
 ### EOL Tool
 
-Developed a tool that analyzes feeders and identifies end-of-line (EOL) meters used in voltage optimization studies to find electrically distant points across laterals. Work that previously took at least four hours now takes a few minutes. The tool identifies EOL meters using electrical distance and overall feeder impedance, evaluating short-circuit levels and low-voltage points. It is used for ComEd voltage optimization studies.
+Developed a tool that analyzes feeders and identifies end-of-line (EOL) meters used in voltage optimization studies to find electrically distant points across laterals. Work that previously took at least four hours now takes a few minutes. The tool identifies EOL meters using electrical distance and overall feeder impedance, evaluating short-circuit levels and low-voltage points. It is used for *confidential utility's* voltage optimization studies.
 
 ### DER Analysis Tools
 
-Developed a DER analysis tool to perform load-flow analysis of voltage, thermal, and voltage-change impacts across possible on/off scenarios for DERs on provided feeders. It processes multiple feeders, automating initial analysis and reporting across cases, DERs, and load interconnection points. The tool reduced 16–24 hours of analysis and reporting to minutes. Developed for CMP DER studies, it is now used by utilities whose primary analysis tool is CYME.
+Developed a DER analysis tool to perform load-flow analysis of voltage, thermal, and voltage-change impacts across possible on/off scenarios for DERs on provided feeders. It processes multiple feeders, automating initial analysis and reporting across cases, DERs, and load interconnection points. The tool reduced 16–24 hours of analysis and reporting to minutes. Developed for *confidential utility's* DER studies, it is now used by utilities whose primary analysis tool is CYME.
 
 ### Contingency Translator and Analyzer
 
@@ -52,7 +52,7 @@ Developed a tool to unify distribution planning workflows. Users define a sequen
 
 ### Model Scrubber
 
-Developed for National Grid, this tool retrieves data from sources including GIS, AMI, area planning sheets, relay databases, and other equipment databases. It validates data across sources and determines ratings, settings, and locations by applying source priorities and *confidential utility* planning criteria. The results are stored in a single database and used to update CYME models so they consistently represent field information. I led the effort in collaboration with _confidential utility_’s Integrated Planning and Automation team. *The utility* runs the tool monthly to maintain model health.
+Developed for *confidential utility*, this tool retrieves data from sources including GIS, AMI, area planning sheets, relay databases, and other equipment databases. It validates data across sources and determines ratings, settings, and locations by applying source priorities and *confidential utility* planning criteria. The results are stored in a single database and used to update CYME models so they consistently represent field information. I led the effort in collaboration with _confidential utility_’s Integrated Planning and Automation team. *The utility* runs the tool monthly to maintain model health.
 
 ### GIS Mapper
 
