@@ -22,7 +22,8 @@ const tutorials = Object.entries(
   <section class="page-intro">
     <p class="eyebrow">LEARN BY WORKING THROUGH EXAMPLES</p>
     <h1>Power systems <span>tutorials.</span></h1>
-    <p class="page-lede">Step-by-step learning notes and illustrative examples. Add Markdown files to <code>src/pages/tutorials/</code> to publish more.</p>
+    <p class="page-lede">Here, I post tutorials on stuff that I feel I know well.</p>
+    <!-- Add Markdown files to <code>src/pages/tutorials/</code> to publish more. -->
   </section>
 
   <section class="post-list" aria-label="Tutorials">
@@ -34,9 +35,9 @@ const tutorials = Object.entries(
         <div class="post-details">
           <h2>{tutorial.frontmatter.title}</h2>
           <p>{tutorial.frontmatter.description}</p>
-          {tutorial.frontmatter.tags?.length > 0 && (
+          {(tutorial.frontmatter.tags?.length ?? 0) > 0 && (
             <ul class="tag-list">
-              {tutorial.frontmatter.tags.map((tag) => <li>{tag}</li>)}
+              {tutorial.frontmatter.tags?.map((tag) => <li>{tag}</li>)}
             </ul>
           )}
         </div>

@@ -28,7 +28,7 @@
 
 ### Data Maintenance Tool
 
-Developed a tool to read AMI data and compare it with the CYME model. When data does not match, the tool corrects load capacity and customer counts in the model. It saves about eight hours of manually reviewing AMI tools and spot loads and is currently used for ComEd studies.
+Developed a tool to read AMI data and compare it with the CYME model. When data does not match, the tool corrects load capacity and customer counts in the model. It saves about eight hours of manually reviewing AMI tools and spot loads and is currently used for *confidential utility* studies.
 
 ### EOL Tool
 
@@ -40,11 +40,11 @@ Developed a DER analysis tool to perform load-flow analysis of voltage, thermal,
 
 ### Contingency Translator and Analyzer
 
-Developed a tool to convert contingency files to PTI contingency format and PSS®E-supported Python commands. It performs load flow and detects abnormalities during contingency scenarios, including load or generation islanding, under- and overvoltage, and thermal overloads. This removes the need to apply contingencies manually and helps convert custom contingency databases to a more standard format. Developed for Ameren DER interconnection studies, it is applicable to many types of contingency analysis and reduces hours of analysis and reporting to minutes.
+Developed a tool to convert contingency files to PTI contingency format and PSS®E-supported Python commands. It performs load flow and detects abnormalities during contingency scenarios, including load or generation islanding, under- and overvoltage, and thermal overloads. This removes the need to apply contingencies manually and helps convert custom contingency databases to a more standard format. Developed for *confidential utility* DER interconnection studies, it is applicable to many types of contingency analysis and reduces hours of analysis and reporting to minutes.
 
 ### Contingency Analyzer
 
-Developed a VBA-based tool to simplify reporting and filtering of results from contingency analysis using PSS®E and TARA. It processes N-1 and N-1-1 results, highlights violations against CMP planning criteria, retrieves previously applied mitigations from the master database, and produces sections of a Word report. It reduced at least 8–16 hours of analysis and reporting to minutes.
+Developed a VBA-based tool to simplify reporting and filtering of results from contingency analysis using PSS®E and TARA. It processes N-1 and N-1-1 results, highlights violations against *confidential utility* planning criteria, retrieves previously applied mitigations from the master database, and produces sections of a Word report. It reduced at least 8–16 hours of analysis and reporting to minutes.
 
 ### Unified Distribution Planning Tool
 
@@ -52,7 +52,7 @@ Developed a tool to unify distribution planning workflows. Users define a sequen
 
 ### Model Scrubber
 
-Developed for National Grid, this tool retrieves data from sources including GIS, AMI, area planning sheets, relay databases, and other equipment databases. It validates data across sources and determines ratings, settings, and locations by applying source priorities and National Grid planning criteria. The results are stored in a single database and used to update CYME models so they consistently represent field information. I led the effort in collaboration with National Grid’s Integrated Planning and Automation team. National Grid runs the tool monthly to maintain model health.
+Developed for National Grid, this tool retrieves data from sources including GIS, AMI, area planning sheets, relay databases, and other equipment databases. It validates data across sources and determines ratings, settings, and locations by applying source priorities and *confidential utility* planning criteria. The results are stored in a single database and used to update CYME models so they consistently represent field information. I led the effort in collaboration with _confidential utility_’s Integrated Planning and Automation team. *The utility* runs the tool monthly to maintain model health.
 
 ### GIS Mapper
 
