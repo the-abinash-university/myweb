@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/PublicationLayout.astro
-title: DistribuTECH 2026
-description: The PDF contains presented material.
+title: Effective Grounding for Inverter-Based Resources — DistribuTECH 2026
+description: DistribuTECH 2026 presentation on effective grounding challenges and solutions for inverter-based resources, with advanced modelling.
 publicationUrl: https://www.distributech.com/
 ---
 

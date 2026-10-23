@@ -1,18 +1,35 @@
 ---
 import type { MarkdownLayoutProps } from 'astro';
+import { site } from '../data/site';
 import SiteLayout from './SiteLayout.astro';
 
 type Props = MarkdownLayoutProps<{
   title: string;
   description: string;
   tags?: string[];
+  noindex?: boolean;
 }>;
 
 const { frontmatter } = Astro.props;
-const { title, description, tags = [] } = frontmatter;
+const { title, description, tags = [], noindex = false } = frontmatter;
+const projectUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+const projectStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'CreativeWork',
+  name: title,
+  description,
+  author: { '@type': 'Person', name: site.name, url: 'https://abinashchaudhary.com/' },
+  ...(projectUrl && { url: projectUrl }),
+  ...(tags.length > 0 && { keywords: tags.join(', ') }),
+};
 ---
 
-<SiteLayout title={title} description={description}>
+<SiteLayout title={title} description={description} noindex={noindex} openGraphType="article">
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(projectStructuredData).replace(/</g, '\\u003c')}
+  />
   <article class="post-article">
     <header class="post-header">
       <a class="post-back-link" href="/side-projects/">← All side projects</a>

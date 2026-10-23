@@ -14,30 +14,32 @@ Build the static site with `npm run build`; preview the build locally with `npm 
 ## Personalize the site
 
 - Edit `src/data/site.ts` to update your name, introduction, email, résumé path, and social profile URLs.
-- Edit the CV directly in `src/pages/cv.md`. The `/cv/` page renders that Markdown, offers the Markdown source for download, and has a Print / Save as PDF button. PDF printouts carry a repeated `abinashchaudhary.com` watermark.
+- Edit the CV directly in `src/pages/cv.md`. The `/cv/` page renders that Markdown, has a shareable link and a Print / Save as PDF button, and is currently excluded from search because its content is a sample. PDF printouts carry a repeated `abinashchaudhary.com` watermark.
 - Edit the About page experience, leadership, business development, and tools content in `src/content/about.md`. The About page renders this Markdown directly.
 - Add your photo to `src/assets/profile/` to replace the About page placeholder automatically. Supported formats are AVIF, GIF, JPEG, PNG, SVG, and WebP. When there are multiple images, a non-placeholder filename is chosen alphabetically; keep just one personal photo in that folder for a predictable result. Leave `profile-placeholder.svg` in place as the fallback.
 - To replace the mountain-and-sea hero art with a photo, add one AVIF, GIF, JPEG, PNG, SVG, or WebP image to `src/assets/hero/`. The site will use it automatically, with a subtle rustic finish; remove it to restore the built-in illustration. If there are several images, the alphabetically first filename is used.
-- Add Markdown posts under `src/pages/posts/`. Each post becomes a page and is automatically listed on `/blog/`; the home page previews the three newest and shows a More card when there are additional posts.
-- Add side-project Markdown pages under `src/pages/side-projects/`. Each project becomes a page and is automatically listed on `/side-projects/`; the home page previews up to three with a More card when additional projects exist. The included projects are illustrative concepts, not claims of completed work.
-- Add tutorial Markdown files under `src/pages/tutorials/`. Each file becomes a tutorial page and is automatically listed at `/tutorials/`; the home page previews the three newest with a More card when additional tutorials exist. Include `layout: ../../layouts/TutorialLayout.astro` and the usual title, `pubDate`, description, and optional tags in its frontmatter.
-- Add publication and presentation Markdown files under `src/pages/publications/`. Each file becomes a detail page and appears on `/publications/`; the home page previews up to three with a More card when there are additional entries. Use `layout: ../../layouts/PublicationLayout.astro`, a title and description, and an optional `publicationUrl` in its frontmatter. Add links or details in the Markdown body. To offer a presentation PDF, place it in `public/publications/` and link it with a site-root path such as `[Read the presentation (PDF)](/publications/dtech-presentation.pdf)`.
+- Add Markdown articles or blog posts under `src/pages/posts/`. Each file becomes a page, is automatically listed on `/blog/`, and is added to the sitemap; the home page previews the three newest. Use `layout: ../../layouts/BlogPostLayout.astro` and include a specific `title`, `pubDate`, unique `description`, and relevant `tags` in frontmatter. Finished posts are indexable by default.
+- Add side-project Markdown pages under `src/pages/side-projects/`. Each project becomes a page, is automatically listed on `/side-projects/`, and is added to the sitemap; the home page previews up to three. Use `layout: ../../layouts/SideProjectLayout.astro` and a specific `title`, unique `description`, and relevant `tags`. Describe the project's purpose, your contribution, technologies, and verified outcomes; distinguish personal or academic work from professional work.
+- Add tutorial Markdown files under `src/pages/tutorials/`. Each tutorial becomes an indexable page, is automatically listed at `/tutorials/`, and is added to the sitemap; the home page previews the three newest. Use `layout: ../../layouts/TutorialLayout.astro` and include a specific `title`, `pubDate`, unique `description`, and relevant `tags`.
+- Add publication and presentation Markdown files under `src/pages/publications/`. Each file becomes a detail page, is listed on `/publications/`, and is added to the sitemap. Use `layout: ../../layouts/PublicationLayout.astro`, a specific title and description, and an optional `publicationUrl` in frontmatter. Add links or details in the Markdown body. To offer a presentation PDF, place it in `public/publications/` and link it with a site-root path such as `[Read the presentation (PDF)](/publications/dtech-presentation.pdf)`.
 - Images in Markdown posts, tutorials, side projects, and the CV automatically scale to fit their content column. Use standard Markdown image syntax and paths relative to the Markdown file, for example `![Relay connection](../../assets/session_1_images/PC_Design_Challenge_1_ac_conn_high_level.png)` from a post, tutorial, or side-project Markdown file.
 - Use standard Markdown `**bold**` and `*italic*` for emphasis, or wrap text in `==double equals==` to display a colored highlight.
 - The theme toggle follows the visitor's system preference until they choose a theme, then remembers their choice in local storage. Light mode uses warm book-paper colors; dark mode uses a deeper forest palette.
+- All standard pages use shared canonical URLs, page-specific descriptions, Open Graph/social-sharing metadata, and the sitemap. Article, tutorial, publication, project, and homepage structured data is generated by their layouts. New Markdown pages use these features automatically when they use the matching layout and include their SEO frontmatter; no per-article code changes are needed.
+- The build generates `sitemap-index.xml` and `robots.txt`; submit `https://abinashchaudhary.com/sitemap-index.xml` in Google Search Console to help Google discover new pages. Pages with `noindex: true` remain excluded from search by their robots metadata. Write accurate, useful content and natural titles/descriptions; search visibility and ranking are determined by Google and cannot be guaranteed by metadata alone.
 
-Example post:
+For an article or blog post, create a Markdown file such as `src/pages/posts/my-topic.md`:
 
 ```md
 ---
 layout: ../../layouts/BlogPostLayout.astro
-title: A note from the workshop
+title: A specific, descriptive article title
 pubDate: 2026-10-18
-description: A short summary that appears in the writing list.
-tags: [projects, notes]
+description: A concise, original summary of this article and what readers will learn.
+tags: [power systems, electrical utilities]
 ---
 
-Write your post here.
+Write the complete article here using Markdown headings, links, lists, images, and emphasis.
 ```
 
-For a tutorial, use `layout: ../../layouts/TutorialLayout.astro` and put the Markdown file in `src/pages/tutorials/`. The tutorial index discovers new files automatically.
+Use the same frontmatter-only workflow for tutorials in `src/pages/tutorials/` with `layout: ../../layouts/TutorialLayout.astro` and projects in `src/pages/side-projects/` with `layout: ../../layouts/SideProjectLayout.astro`. For publications, use `src/pages/publications/` and `layout: ../../layouts/PublicationLayout.astro`. The matching layout supplies SEO metadata and structured data, and the build discovers each new Markdown page automatically.

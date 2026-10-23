@@ -74,9 +74,34 @@ const allPosts = Object.entries(
   }))
   .sort((a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf());
 const posts = allPosts.slice(0, 3);
+const personStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.name,
+  url: 'https://abinashchaudhary.com/',
+  jobTitle: site.title,
+  description: site.description,
+  sameAs: site.socialLinks.map(({ href }) => href),
+  knowsAbout: [
+    'Power systems engineering',
+    'Electrical utility studies',
+    'Electromagnetic transient (EMT) studies',
+    'Protection and control',
+    'CYME',
+    'PSS®E (PSSE)',
+    'PSCAD',
+    'ISO and RTO transmission planning',
+    'Open-source power systems tools',
+  ],
+};
 ---
 
 <SiteLayout title={site.title} description={site.description}>
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(personStructuredData).replace(/</g, '\\u003c')}
+  />
   <section class="hero">
     <p class="eyebrow"><span class="status-dot"></span> MY LITTLE INTERNET SPACE</p>
     <h1><span>Modelling, Studies</span> &amp; Thoughts.</h1>

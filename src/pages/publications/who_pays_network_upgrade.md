@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/PublicationLayout.astro
 title: IEEE Xplore publication
-description: View my publication on IEEE Xplore.
+description: Power systems engineering publication by Abinash Chaudhary, available through IEEE Xplore.
 publicationUrl: https://ieeexplore.ieee.org/document/10547486
 ---
 

@@ -1,7 +1,8 @@
 ---
 layout: ../layouts/CVLayout.astro
 title: CV
-description: View and download the Markdown-based sample CV of Abinash Chaudhary, Power Systems Engineer.
+description: CV and professional background of Abinash Chaudhary, Power Systems Engineer.
+noindex: true
 ---
 
 # Abinash Chaudhary

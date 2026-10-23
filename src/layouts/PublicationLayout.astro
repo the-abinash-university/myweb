@@ -1,5 +1,6 @@
 ---
 import type { MarkdownLayoutProps } from 'astro';
+import { site } from '../data/site';
 import SiteLayout from './SiteLayout.astro';
 
 type Props = MarkdownLayoutProps<{
@@ -9,9 +10,23 @@ type Props = MarkdownLayoutProps<{
 }>;
 
 const { frontmatter } = Astro.props;
+const articleUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+const articleStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: frontmatter.title,
+  description: frontmatter.description,
+  author: { '@type': 'Person', name: site.name, url: 'https://abinashchaudhary.com/' },
+  ...(articleUrl && { mainEntityOfPage: articleUrl }),
+};
 ---
 
-<SiteLayout title={frontmatter.title} description={frontmatter.description}>
+<SiteLayout title={frontmatter.title} description={frontmatter.description} openGraphType="article">
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(articleStructuredData).replace(/</g, '\\u003c')}
+  />
   <article class="post-article">
     <header class="post-header">
       <a class="post-back-link" href="/publications/">← All publications</a>

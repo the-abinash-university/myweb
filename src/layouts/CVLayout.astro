@@ -5,23 +5,13 @@ import SiteLayout from './SiteLayout.astro';
 type Props = MarkdownLayoutProps<{
   title: string;
   description: string;
+  noindex?: boolean;
 }>;
 
-const { frontmatter, rawContent } = Astro.props;
-const markdown = `---
-title: ${JSON.stringify(frontmatter.title)}
-description: ${JSON.stringify(frontmatter.description)}
+const { frontmatter } = Astro.props;
 ---
 
-${rawContent()}
-
----
-
-${Array.from({ length: 5 }, () => 'from abinashchaudhary.com').join('\n\n')}`;
-const markdownUrl = `data:text/markdown;charset=utf-8,${encodeURIComponent(markdown)}`;
----
-
-<SiteLayout title={frontmatter.title} description={frontmatter.description}>
+<SiteLayout title={frontmatter.title} description={frontmatter.description} noindex={frontmatter.noindex}>
   <section class="page-intro cv-page-intro">
     <p class="eyebrow">SUMMARY TILL NOW</p>
     <h1>CV <span>&amp; experience.</span></h1>
@@ -33,13 +23,14 @@ const markdownUrl = `data:text/markdown;charset=utf-8,${encodeURIComponent(markd
       <a class="button button-outline" href="/about/#highlights">
         View highlights <span aria-hidden="true">↗</span>
       </a>
-      <a class="button button-primary" href={markdownUrl} download="Abinash-Chaudhary-CV.md">
-        Download Markdown <span aria-hidden="true">↓</span>
-      </a>
+      <button class="button button-primary cv-share-button" type="button">
+        Share <span aria-hidden="true">↗</span>
+      </button>
       <button class="button button-outline cv-print-button" type="button">
         Print / Save as PDF <span aria-hidden="true">↗</span>
       </button>
     </div>
+    <p class="cv-share-status" role="status" aria-live="polite"></p>
   </section>
 
   <section class="cv-preview-section" aria-label="CV preview">
@@ -51,5 +42,6 @@ const markdownUrl = `data:text/markdown;charset=utf-8,${encodeURIComponent(markd
 
   <script>
     import '../scripts/cv-print.js';
+    import '../scripts/cv-share.js';
   </script>
 </SiteLayout>

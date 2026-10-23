@@ -1,8 +1,8 @@
 export const site = {
   name: 'Abinash Chaudhary',
   title: 'Power Systems Engineer',
-  description: 'Power systems engineer in the electrical utilities sector. Experienced in EMT studies, protection and control, modelling, simulation, optimization, and open-source tools for grid modernization.',
-  introduction: 'I work in the electrical utilities sector, specializing in electromagnetic transient (EMT) studies, protection and control, modelling, simulation, and optimization. I build open-source tools with Rust, C++, C, Python, and JavaScript to help modernize the grid.',
+  description: 'Power systems engineer in electrical utilities: electromagnetic transient (EMT) studies, CYME, PSS®E (PSSE), PSCAD, and ISO/RTO transmission planning.',
+  introduction: 'I work with electrical utilities on electromagnetic transient (EMT) studies, protection and control, and grid planning. My tools include PSCAD, CYME, and PSS®E (PSSE), with transmission planning experience for ISO and RTO clients. I also build open-source grid tools.',
   email: '',
   socialLinks: [
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/abinash-chaudhary/' },
