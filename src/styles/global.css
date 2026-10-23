@@ -266,6 +266,14 @@ main {
   line-height: 1.8;
 }
 
+.hero-copy p {
+  margin: 0 0 14px;
+}
+
+.hero-copy p:last-child {
+  margin-bottom: 0;
+}
+
 .hero-actions {
   display: flex;
   align-items: center;
