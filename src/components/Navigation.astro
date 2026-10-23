@@ -2,9 +2,10 @@
 ---
 interface Props {
   currentPath: string;
+  mobile?: boolean;
 }
 
-const { currentPath } = Astro.props;
+const { currentPath, mobile = false } = Astro.props;
 const links = [
   { href: '/about/', label: 'About' },
   { href: '/side-projects/', label: 'Side projects' },
@@ -14,7 +15,10 @@ const links = [
   { href: '/cv/', label: 'CV' },
 ];
 ---
-<nav class="nav-links" aria-label="Main navigation">
+<nav
+  class:list={['nav-links', mobile && 'nav-links-mobile']}
+  aria-label={mobile ? 'Mobile main navigation' : 'Main navigation'}
+>
   {links.map(({ href, label }) => (
     <a href={href} aria-current={currentPath === href || currentPath.startsWith(href) ? 'page' : undefined}>{label}</a>
   ))}

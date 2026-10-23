@@ -1,6 +1,7 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
-import { site } from '../data/site';
+import { personStructuredData, site } from '../data/site';
+import PowerSystemArt from '../components/PowerSystemArt.astro';
 
 const heroImages = Object.entries(
   import.meta.glob<string>('../assets/hero/*.{avif,gif,jpg,jpeg,png,svg,webp}', {
@@ -74,47 +75,18 @@ const allPosts = Object.entries(
   }))
   .sort((a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf());
 const posts = allPosts.slice(0, 3);
-const personStructuredData = {
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: site.name,
-  url: 'https://abinashchaudhary.com/',
-  jobTitle: site.title,
-  description: site.description,
-  sameAs: site.socialLinks.map(({ href }) => href),
-  knowsAbout: [
-    'Power systems engineering',
-    'Electrical utility studies',
-    'Electromagnetic transient (EMT) studies',
-    'Protection and control',
-    'NERC standards',
-    'CYME',
-    'PSS®E (PSSE)',
-    'PSCAD',
-    'PowerWorld',
-    'PowerGEM TARA',
-    'ASPEN OneLiner',
-    'Synergi',
-    'Milsoft WindMil',
-    'RSCAD',
-    'ISO and RTO transmission planning',
-    'Power systems software development',
-  ],
-};
 ---
 
-<SiteLayout title={site.title} description={site.description}>
+<SiteLayout title="Power Systems: Phenomena, Studies & Tools" description={site.description}>
   <script
     type="application/ld+json"
     is:inline
     set:html={JSON.stringify(personStructuredData).replace(/</g, '\\u003c')}
   />
   <section class="hero">
-    <p class="eyebrow"><span class="status-dot"></span> MY LITTLE INTERNET SPACE</p>
-    <h1><span>Modelling, Studies</span> &amp; Thoughts.</h1>
-    <div class="hero-copy">
-      {site.introduction.map((paragraph) => <p>{paragraph}</p>)}
-    </div>
+    <p class="eyebrow"><span class="status-dot"></span> PROJECTS · TUTORIALS · TOOLS</p>
+    <h1><span>Power systems.</span></h1>
+    <p class="hero-copy">{site.homeIntroduction}</p>
     <div class="hero-actions">
       <a class="button button-primary" href="#projects">Explore my work <span aria-hidden="true">↓</span></a>
       <a class="text-link" href="/about/">Learn more about me <span aria-hidden="true">↗</span></a>
@@ -128,19 +100,7 @@ const personStructuredData = {
     <div class="hero-stamp" aria-hidden="true">
       {heroImage ? (
         <img src={heroImage} alt="" width="480" height="600" />
-      ) : (
-        <svg viewBox="0 0 120 120" fill="none">
-          <circle cx="83" cy="37" r="12" fill="var(--status)" stroke="none" />
-          <path d="M14 78 43 43l15 18 11-13 37 30v8H14v-8Z" fill="var(--soft-green)" />
-          <path d="m14 78 29-35 15 18m0 0 11-13 37 30" />
-          <path d="m34 54 9-11 8 10-7-2-4 6m20 2 8-9 8 8-7-2-4 5" />
-          <path d="M13 81c11-3 20 3 31 0s20-3 31 0 20 3 32 0" />
-          <path d="M16 91c9-3 17 3 26 0s17-3 26 0 17 3 26 0 12-2 18 0" />
-          <path d="M27 101c8-2 14 2 22 0s14-2 22 0 14 2 22 0" />
-          <path d="M14 109h92" />
-          <path d="M25 34c4-4 8-4 12 0m9-9c3-3 6-3 9 0" />
-        </svg>
-      )}
+      ) : <PowerSystemArt variant="transmission" />}
     </div>
   </section>
 

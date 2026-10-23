@@ -2,6 +2,7 @@
 import type { MarkdownLayoutProps } from 'astro';
 import { site } from '../data/site';
 import SiteLayout from './SiteLayout.astro';
+import PowerSystemArt from '../components/PowerSystemArt.astro';
 
 type Props = MarkdownLayoutProps<{
   title: string;
@@ -36,6 +37,7 @@ const projectStructuredData = {
       <p class="eyebrow">SIDE PROJECT · DONE WITHIN MY OWN TIME</p>
       <h1>{title}</h1>
       <p class="post-description">{description}</p>
+      <div class="post-header-art"><PowerSystemArt variant="battery" /></div>
       {tags.length > 0 && (
         <ul class="tag-list">
           {tags.map((tag) => <li>{tag}</li>)}

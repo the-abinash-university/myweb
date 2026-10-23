@@ -2,6 +2,7 @@
 import type { MarkdownLayoutProps } from 'astro';
 import { site } from '../data/site';
 import SiteLayout from './SiteLayout.astro';
+import PowerSystemArt from '../components/PowerSystemArt.astro';
 
 type Props = MarkdownLayoutProps<{
   title: string;
@@ -39,6 +40,7 @@ const articleStructuredData = {
       <p class="eyebrow">POWER SYSTEMS · TUTORIAL</p>
       <h1>{title}</h1>
       <p class="post-description">{description}</p>
+      <div class="post-header-art"><PowerSystemArt variant="controls" /></div>
       <time datetime={date.toISOString()}>
         {date.toLocaleDateString('en', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })}
       </time>

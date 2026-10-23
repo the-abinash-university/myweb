@@ -1,5 +1,6 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
+import PowerSystemArt from '../components/PowerSystemArt.astro';
 
 interface PostFrontmatter {
   title: string;
@@ -26,6 +27,7 @@ const posts = Object.entries(
     <p class="eyebrow">THOUGHTS & NOTES</p>
     <h1>Writings. <span>Blogs. Thoughts. </span></h1>
     <p class="page-lede">Things that are not project or tutorial. A lot of me and my thoughts.</p>
+    <div class="page-intro-art"><PowerSystemArt variant="wind" /></div>
   </section>
 
   <section class="post-list" aria-label="Blog posts">

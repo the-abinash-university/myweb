@@ -1,5 +1,6 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
+import PowerSystemArt from '../../components/PowerSystemArt.astro';
 
 interface ProjectFrontmatter {
   title: string;
@@ -24,6 +25,7 @@ const projects = Object.entries(
     <p class="eyebrow">ENGINEERING IDEAS &amp; EXPERIMENTS</p>
     <h1>Side <span>projects.</span></h1>
     <p class="page-lede">Here, I share the details about projects that interests me.</p>
+    <div class="page-intro-art"><PowerSystemArt variant="battery" /></div>
   </section>
 
   <section class="content-section project-index">
@@ -40,4 +42,4 @@ const projects = Object.entries(
       ))}
     </div>
   </section>
-</SiteLayout>
+  </SiteLayout>

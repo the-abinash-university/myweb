@@ -1,6 +1,7 @@
 ---
 import type { MarkdownLayoutProps } from 'astro';
 import SiteLayout from './SiteLayout.astro';
+import PowerSystemArt from '../components/PowerSystemArt.astro';
 
 type Props = MarkdownLayoutProps<{
   title: string;
@@ -15,6 +16,7 @@ const { frontmatter } = Astro.props;
   <section class="page-intro cv-page-intro">
     <p class="eyebrow">SUMMARY TILL NOW</p>
     <h1>CV <span>&amp; experience.</span></h1>
+    <div class="page-intro-art"><PowerSystemArt variant="solar" /></div>
   </section>
 
   <section class="cv-actions" aria-label="CV actions">

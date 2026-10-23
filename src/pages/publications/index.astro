@@ -1,5 +1,6 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
+import PowerSystemArt from '../../components/PowerSystemArt.astro';
 
 interface PublicationFrontmatter {
   title: string;
@@ -24,6 +25,7 @@ const publications = Object.entries(
     <p class="eyebrow">PAPERS &amp; PRESENTATIONS</p>
     <h1>Selected <span>publications.</span></h1>
     <p class="page-lede">Research publications and presentations.</p>
+    <div class="page-intro-art"><PowerSystemArt variant="hydro" /></div>
   </section>
 
   <section class="post-list" aria-label="Publications">
@@ -45,4 +47,4 @@ const publications = Object.entries(
       </div>
     )}
   </section>
-</SiteLayout>
+  </SiteLayout>

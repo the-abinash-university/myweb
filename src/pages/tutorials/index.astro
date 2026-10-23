@@ -1,5 +1,6 @@
 ---
 import SiteLayout from '../../layouts/SiteLayout.astro';
+import PowerSystemArt from '../../components/PowerSystemArt.astro';
 
 interface TutorialFrontmatter {
   title: string;
@@ -23,6 +24,7 @@ const tutorials = Object.entries(
     <p class="eyebrow">LEARN BY WORKING THROUGH EXAMPLES</p>
     <h1>Power systems <span>tutorials.</span></h1>
     <p class="page-lede">Here, I post tutorials on stuff that I feel I know well.</p>
+    <div class="page-intro-art"><PowerSystemArt variant="controls" /></div>
     <!-- Add Markdown files to <code>src/pages/tutorials/</code> to publish more. -->
   </section>
 
@@ -53,4 +55,4 @@ const tutorials = Object.entries(
       </div>
     )}
   </section>
-</SiteLayout>
+  </SiteLayout>

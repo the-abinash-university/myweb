@@ -1,7 +1,8 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
-import { site } from '../data/site';
+import { personStructuredData, site } from '../data/site';
 import { Content } from '../content/about.md';
+import PowerSystemArt from '../components/PowerSystemArt.astro';
 
 const linkedin = site.socialLinks.find(({ label }) => label === 'LinkedIn');
 const github = site.socialLinks.find(({ label }) => label === 'GitHub');
@@ -34,14 +35,20 @@ const isPhotoPlaceholder = profileImagePath.endsWith('/profile-placeholder.svg')
 
 <SiteLayout
   title="About"
-  description={`Power systems engineering experience in EMT studies, electrical utilities, CYME, PSS®E, PSCAD, and ISO/RTO planning from ${site.name}.`}
+  description={site.personDescription}
 >
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(personStructuredData).replace(/</g, '\\u003c')}
+  />
   <section class="page-intro">
     <p class="eyebrow">SOMETHING</p>
     <h1>About <span>me.</span></h1>
+    <div class="page-intro-art"><PowerSystemArt variant="hydro" /></div>
   </section>
 
-  <section class="about-copy">
+  <section class="about-copy" aria-labelledby="professional-summary">
     <figure class="about-photo">
       <img
         src={profileImageUrl}
@@ -55,6 +62,10 @@ const isPhotoPlaceholder = profileImagePath.endsWith('/profile-placeholder.svg')
           : 'Abinash Chaudhary · Power Systems Engineer'}
       </figcaption>
     </figure>
+    <div class="prose about-summary">
+      <h2 id="professional-summary">Professional summary</h2>
+      {site.introduction.map((paragraph) => <p>{paragraph}</p>)}
+    </div>
   </section>
 
   <article id="highlights" class="prose about-prose">
@@ -69,7 +80,7 @@ const isPhotoPlaceholder = profileImagePath.endsWith('/profile-placeholder.svg')
     <div>
       <p class="eyebrow">THE SHORT VERSION</p>
       <h2>Curriculum vitae</h2>
-      <p>View or download my sample power systems engineering CV. The sample clearly marks details that need replacing with verified experience.</p>
+      <p>View or download my power systems engineering CV.</p>
     </div>
     <a class="button button-outline" href="/cv/">View CV <span aria-hidden="true">↗</span></a>
   </section>

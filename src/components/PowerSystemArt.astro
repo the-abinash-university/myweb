@@ -1,0 +1,64 @@
+---
+interface Props {
+  variant: 'transmission' | 'wind' | 'solar' | 'battery' | 'controls' | 'hydro';
+}
+
+const { variant } = Astro.props;
+---
+
+<svg class="power-system-art" viewBox="0 0 220 150" fill="none" aria-hidden="true">
+  {variant === 'transmission' && (
+    <>
+      <path d="M8 35h204M18 52h184M31 70h158" opacity=".48" />
+      <path d="m110 10-38 128m38-128 38 128M91 40h38M82 58h56M71 77h78M77 138h66" />
+      <path d="m92 40-10 18m29-18 25 18M82 58l28 19m28-19-28 19M71 77l39 20m39-20-39 20m0 0-27 20m27-20 27 20m-54 0 27 21m27-21-27 21" />
+      <path d="M85 34v-7m50 7v-7M76 51v-7m68 7v-7M65 70v-7m90 7v-7" />
+      <path d="M4 31c24 0 40 4 57 7m98-1c17-3 34-6 57-6M4 48c21 0 36 3 50 6m112 0c14-3 29-6 50-6" opacity=".7" />
+    </>
+  )}
+  {variant === 'wind' && (
+    <>
+      <path d="M12 132h196M110 58v74m-8 0h16" />
+      <circle cx="110" cy="58" r="5" />
+      <path d="m108 53-9-37c-2-8 2-11 7-5l7 38m2 11 36 13c8 3 8 8 0 9l-38 1m-5-2-21 32c-5 7-10 5-9-3l13-36" />
+      <path d="M49 132c11-9 22-9 33 0m57 0c11-9 22-9 33 0" opacity=".52" />
+    </>
+  )}
+  {variant === 'solar' && (
+    <>
+      <circle cx="177" cy="32" r="14" opacity=".7" />
+      <path d="M177 8v-5m0 58v-5m24-24h6m-58 0h6m39-17 4-4m-42 42 4-4m38 0 4 4m-42-42 4 4" opacity=".55" />
+      <path d="M25 68h119l-12 64H13l12-64Z" />
+      <path d="m44 68-10 64m40-64-5 64m39-64 1 64M20 91h119m-123 21h119M42 132l-7 8m82-8 7 8m-76 0h76" />
+      <path d="M153 79h45v53h-45zM164 91h22m-22 12h22m-22 12h22" opacity=".64" />
+    </>
+  )}
+  {variant === 'battery' && (
+    <>
+      <path d="M37 34h135a8 8 0 0 1 8 8v91a8 8 0 0 1-8 8H37a8 8 0 0 1-8-8V42a8 8 0 0 1 8-8Zm44-12h47v12H81z" />
+      <path d="M51 53v68m34-68v68m34-68v68m34-68v68M16 73h13m-13 30h13m163-30h25m-25 30h25" opacity=".72" />
+      <path d="M198 73v30m-15-15h30M11 88h10m-5-5v10" />
+      <path d="M43 147h122" opacity=".5" />
+    </>
+  )}
+  {variant === 'controls' && (
+    <>
+      <path d="M8 75h27m45 0h28m45 0h27m-86-36h47m0 72h-47" />
+      <rect x="35" y="55" width="45" height="40" rx="2" />
+      <rect x="108" y="55" width="45" height="40" rx="2" />
+      <path d="m49 75 7-10 8 20 7-10m52 0 7-10 8 20 7-10M188 68l12 7-12 7" />
+      <path d="M130 55V39m-22 0h45M130 95v16m-22 0h45" opacity=".6" />
+      <path d="M16 68v14m-5-7h10m180-7v14" opacity=".6" />
+    </>
+  )}
+  {variant === 'hydro' && (
+    <>
+      <circle cx="79" cy="75" r="43" />
+      <circle cx="79" cy="75" r="9" />
+      <path d="M79 32v34m0 18v34m43-43H88m-18 0H36m73-30L85 69m-13 13-24 24m61 0L85 81m-13-13L48 44" />
+      <path d="M122 56h24a19 19 0 0 1 0 38h-24m48-38h18v38h-18m-24-19h24m-9-28v57" />
+      <path d="M23 132h174m-166 7h158" opacity=".48" />
+      <path d="M7 45c7 4 7 9 0 13m0 9c7 4 7 9 0 13m0 9c7 4 7 9 0 13" opacity=".55" />
+    </>
+  )}
+</svg>
