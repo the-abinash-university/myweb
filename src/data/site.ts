@@ -3,7 +3,7 @@ export const site = {
   title: 'Power Systems Engineer',
   description: 'Explore power systems, electromagnetic phenomena, EMT simulations, grid analysis, and the models and tools used to plan reliable, modern electric utilities.',
   personDescription: 'Licensed Professional Engineer with 7+ years in power systems: EMT simulations, protection, transmission and distribution planning, NERC, ISO/RTO, PSCAD, PSS®E, and CYME.',
-  homeIntroduction: 'A place to learn about power systems: the electromagnetic phenomena shaping the grid, the protection and control behind it, the models and tools used to study it, and the engineering behind reliable, modern electric utilities.',
+  homeIntroduction: 'Exploring power systems, modern grids, and electric utilities through system modeling, electromagnetic transient (EMT) studies, protection and control, and short- and long-term grid planning.',
   introduction: [
     'I am a licensed Professional Engineer (PE) with over seven years of experience in power systems engineering, passionate about electromagnetic phenomena, power system dynamics, and grid analysis. My experience spans electromagnetic transient (EMT) simulations, protection and control, and transmission and distribution planning. I am experienced in working with NERC standards and the requirements and practices of Independent System Operators (ISOs) and Regional Transmission Organizations (RTOs) across North America.',
     'I have conducted power system studies using industry-standard tools, including PSCAD, PSS®E, PowerWorld, PowerGem TARA, ASPEN OneLiner, CYME, Synergi, and Milsoft WindMil, and have experience developing power system models in RSCAD.',
