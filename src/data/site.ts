@@ -1,8 +1,8 @@
 export const site = {
   name: 'Abinash Chaudhary',
   title: 'Power Systems Engineer',
-  description: 'The portfolio, side projects, and writing of Abinash Chaudhary, Power Systems Engineer.',
-  introduction: 'I am a Power System Engineer. I am passionate about electrical grid and its electro-magnetic phenomena. My work includes Power Systems Modelling, EMT Studies, Protection and Control, GMDs, Optimization, Short and Long Term Planning studies.',
+  description: 'Power systems engineer in the electrical utilities sector. Experienced in EMT studies, protection and control, modelling, simulation, optimization, and open-source tools for grid modernization.',
+  introduction: 'I work in the electrical utilities sector, specializing in electromagnetic transient (EMT) studies, protection and control, modelling, simulation, and optimization. I build open-source tools with Rust, C++, C, Python, and JavaScript to help modernize the grid.',
   email: '',
   socialLinks: [
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/abinash-chaudhary/' },
