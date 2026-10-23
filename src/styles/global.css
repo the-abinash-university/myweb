@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Manrope:wght@400;500;600;700;800&display=swap');
 
 :root {
   font-family: 'DM Sans', sans-serif;
@@ -14,6 +14,8 @@
   --paper: #efe2c8;
   --soft-green: #dfd5b9;
   --status: #7c8151;
+  --highlight-ink: #382d21;
+  --highlight-bg: #e5bd73;
   --card: rgb(255 251 239 / 48%);
   --card-hover: #f6ecd8;
   --control-line: #c0a983;
@@ -30,6 +32,8 @@
   --paper: #111713;
   --soft-green: #202a23;
   --status: #a3bc83;
+  --highlight-ink: #111713;
+  --highlight-bg: #c2d0a0;
   --card: rgb(255 255 255 / 3%);
   --card-hover: #1b261f;
   --control-line: #455348;
@@ -45,6 +49,8 @@
     --paper: #111713;
     --soft-green: #202a23;
     --status: #a3bc83;
+    --highlight-ink: #111713;
+    --highlight-bg: #c2d0a0;
     --card: rgb(255 255 255 / 3%);
     --card-hover: #1b261f;
     --control-line: #455348;
@@ -736,6 +742,26 @@ main {
   color: var(--ink);
   font-size: 1rem;
   line-height: 1.85;
+}
+
+.prose strong,
+.cv-prose strong {
+  font-weight: 700;
+}
+
+.prose em,
+.cv-prose em {
+  font-style: italic;
+}
+
+.prose mark,
+.cv-prose mark {
+  padding: 0.08em 0.24em;
+  border-radius: 0.2em;
+  background-color: var(--highlight-bg);
+  color: var(--highlight-ink);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
 .prose img,

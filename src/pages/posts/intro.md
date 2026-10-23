@@ -6,4 +6,4 @@ description: Something to future.
 tags: [intro, pending posts]
 ---
 
---- I will post my writings in future. Working on few :).
+--- I will post my writings in *future*. Working on few :).
