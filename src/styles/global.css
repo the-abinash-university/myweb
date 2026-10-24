@@ -277,6 +277,7 @@ main {
 
 .hero > h1 {
   grid-area: heading;
+  margin-bottom: -40px;
 }
 
 .hero-copy,
@@ -1212,6 +1213,10 @@ main {
   .hero h1 {
     max-width: none;
     font-size: clamp(2.2rem, 10vw, 3.4rem);
+  }
+
+  .hero > h1 {
+    margin-bottom: 4px;
   }
 
   .hero-actions {
