@@ -10,7 +10,7 @@ noindex: true
 **POWER SYSTEMS ENGINEER**
 
 [Email address] · [City, Country]  
-[Homepage](https://abinashchaudhary.com) · [LinkedIn](https://www.linkedin.com/in/abinash-chaudhary/) · [GitHub](https://github.com/the-abinash-university) · [Substack](https://substack.com/@theabinashuniversity)
+[Homepage](https://abinashchaudhary.com) · [LinkedIn](https://www.linkedin.com/in/abinash-chaudhary/) · [GitHub](https://github.com/the-abinash-university) · [Codeberg](https://codeberg.org/the-abinash-university) · [Substack](https://substack.com/@theabinashuniversity)
 
 ## Professional summary
 

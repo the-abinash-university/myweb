@@ -14,6 +14,7 @@ export const site = {
   socialLinks: [
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/abinash-chaudhary/' },
     { label: 'GitHub', href: 'https://github.com/the-abinash-university' },
+    { label: 'Codeberg', href: 'https://codeberg.org/the-abinash-university' },
     { label: 'Substack', href: 'https://substack.com/@theabinashuniversity' },
   ],
 };
